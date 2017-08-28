@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body ng-app="directoryApp">
+    <nav class="navbar navbar-dark">
+      <span class="navbar-brand mb-0">UF&nbsp;Directory&nbsp;App</span>
+    </nav>
+    <div id="directory-content" class="container-fluid" ng-controller="ListingsController">
+      <div class="row">
+        <div class="col-12">
+          <div id="directory-details-jumbotron" class="jumbotron jumbotron-fluid">
+            <div class="container-fluid text-center">
+              <div ng-show="!detailedInfo" class="row">
+                <div class="col-12">
+                    <h2>Select a building to see its details.</h2>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                    <div>{{detailedInfo.code}}</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                    <div>{{detailedInfo.name}}</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                    <div>{{detailedInfo.address}}</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                    <span ng-show="detailedInfo.coordinates.latitude && detailedInfo.coordinates.longitude">
+                      {{detailedInfo.coordinates.latitude}}, {{detailedInfo.coordinates.longitude}}
+                    </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div id="listing-table-column" class="col-md-6">
+          <table id="search-results-header-table" class="table table-inverse">
+            <tr>
+              <th>Code</th>
+              <th>Building&nbsp;Name</th>
+              <th><input id="directory-search-input" type="text" class="form-control" placeholder="Search" ng-model="searchText"></th>
+            </tr>
+          </table>
+          <div id="search-results-body-table">
+            <table class="table table-inverse table-striped table-hover">
+              <tr ng-repeat="listing in listings | filter:searchText" ng-click="showDetails($index)">
+                <td>
+                  {{listing.code}}
+                </td>
+                <td>
+                  {{listing.name}}
+                </td>
+                <td class="text-right">
+                  <button class="btn btn-outline-danger btn-square" ng-click="deleteListing(listing.code)">&nbsp;X&nbsp;</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div id="add-listing-form-column" class="col-md-6">
+          <h3>Add Directory</h3>
+          <form id="add-listing-form" name="addListingForm">
+            <div class="form-group">
+                <label>Code</label>
+                <input name="code" type="text" class="form-control" placeholder="Code" 
+                  ng-model="inputListing.code"
+                  pattern="[A-Z]{3,4}" required>
+                <div class="alert alert-danger no-margin-bottom input-alert" 
+                  ng-show="addListingForm.code.$invalid && addListingForm.code.$touched">
+                    <strong>Error!</strong> The code must be 3 or 4 capital letters
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Name</label>
+                <input name="name" type="text" class="form-control" placeholder="Name" 
+                  ng-model="inputListing.name" required>
+                <div class="alert alert-danger no-margin-bottom input-alert" 
+                  ng-show="addListingForm.name.$invalid && addListingForm.name.$touched">
+                  <strong>Error!</strong> Must provide a name
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Coordinates</label>
+                <input name="latitude" type="number" class="form-control" 
+                  ng-model="inputListing.coordinates.latitude" 
+                  placeholder="Latitude"
+                  ng-required="inputListing.coordinates.longitude || inputListing.address.length > 0">
+                <div class="alert alert-danger no-margin-bottom input-alert"
+                  ng-show="addListingForm.latitude.$invalid && (addListingForm.latitude.$touched || (inputListing.address.length > 0 && addListingForm.address.$touched))">
+                  <strong>Error!</strong> Must provide a latitude
+                </div>
+                <input id="latitude-input" name="longitude" type="number" class="form-control"
+                  ng-model="inputListing.coordinates.longitude" 
+                  placeholder="Longitude"
+                  ng-required="inputListing.coordinates.latitude || inputListing.address.length > 0">
+                <div class="alert alert-danger no-margin-bottom input-alert"
+                  ng-show="addListingForm.longitude.$invalid && (addListingForm.longitude.$touched || (inputListing.address.length > 0 && addListingForm.address.$touched))">
+                  <strong>Error!</strong> Must provide a longitude
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Address</label>
+                <input name="address" type="text" class="form-control" ng-model="inputListing.address" 
+                  placeholder="Address"
+                  ng-required="inputListing.coordinates.longitude || inputListing.coordinates.latitude">
+                <div class="alert alert-danger no-margin-bottom input-alert"
+                  ng-show="addListingForm.address.$invalid && addListingForm.address.$touched">
+                  <strong>Error!</strong> Must provide an address
+                </div>
+            </div>
+            <button class="btn btn-outline-success btn-square" ng-click="addListing()">Add Listing</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar static-bottom navbar-dark">
+      <span id="web-master-text-wrapper" class="navbar-text">
+          <div id="web-master-text"><i>by</i> Ryan Clements</div>
+      </span>
+    </nav>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+    <script src="app.js"></script>
+    <script src="listingController.js"></script>
+    <script src="listingFactory.js"></script>
+  </body>
+</html>

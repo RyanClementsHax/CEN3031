@@ -1,0 +1,86 @@
+body {
+  background: #32383e;
+  color: white;
+}
+
+nav {
+  background-color: #212529;
+}
+
+.btn-square {
+  border-radius: 0px;
+}
+
+#directory-content {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+#directory-details-jumbotron {
+  background-image: url('./jumbotronBackground.PNG');
+  background-color: #212529;
+  margin-bottom: 0px;
+}
+
+#add-listing-form-column, #listing-table-column {
+  margin-top: 16px;
+}
+
+#add-listing-form > .form-group > input {
+  color: white;
+  background-color: #212529;
+  border-color: #808080;
+  border-width: 0.5px;
+  border-radius: 0px;
+}
+
+#latitude-input {
+  margin-top: 12px;
+}
+
+#search-results-header-table {
+  margin-bottom: 0px;
+}
+
+#directory-search-input {
+  border-radius: 0px;
+}
+
+#search-results-body-table {
+  max-height: 405px;
+  overflow: auto;
+}
+
+#search-results-body-table::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #212529;
+}
+
+#search-results-body-table::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #343a40;
+}
+
+#search-results-body-table::-webkit-scrollbar-thumb
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #343a40;
+}
+
+#web-master-text-wrapper {
+  width: 100%;
+}
+
+#web-master-text {
+  float: right;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0px;
+}
+
+.input-alert {
+  margin-top: 12px;
+}

@@ -1,0 +1,21 @@
+{
+  "name": "uf-directory-app-assignment",
+  "version": "1.0.0",
+  "description": "We will continue to build upon our directory application by creating a front-end interface with Angular.js to display listings, as well as the ability to add new listings and delete old ones.",
+  "main": "app.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "start": "live-server ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UFWebApps/UF-Directory-App-Assignment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UFWebApps/UF-Directory-App-Assignment/issues"
+  },
+  "homepage": "https://github.com/UFWebApps/UF-Directory-App-Assignment#readme"
+}
