@@ -55,7 +55,7 @@
           </table>
           <div id="search-results-body-table">
             <table class="table table-inverse table-striped table-hover">
-              <tr ng-repeat="listing in listings | filter:searchText" ng-click="showDetails($index)">
+              <tr ng-repeat="listing in listings | filter:searchText" ng-click="showDetails(listing)">
                 <td>
                   {{listing.code}}
                 </td>
@@ -63,7 +63,7 @@
                   {{listing.name}}
                 </td>
                 <td class="text-right">
-                  <button class="btn btn-outline-danger btn-square" ng-click="deleteListing(listing.code)">&nbsp;X&nbsp;</button>
+                  <button class="btn btn-outline-danger btn-square" ng-click="deleteListing(listing)">&nbsp;X&nbsp;</button>
                 </td>
               </tr>
             </table>

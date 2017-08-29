@@ -19,23 +19,17 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       }
     };
 
-    $scope.deleteListing = function(code) {
+    $scope.deleteListing = function(listing) {
       $scope.listings = $scope.listings.filter(function(item) {
-        return item.code != code;
+        return item != listing;
       });
-      if($scope.detailedInfo.code == code) {
+      if($scope.detailedInfo.code == listing.code) {
         $scope.detailedInfo = null;
       }
     };
 
-    $scope.showDetails = function(index) {
-      $scope.detailedInfo = $scope.listings[index];
+    $scope.showDetails = function(listing) {
+      $scope.detailedInfo = listing;
     };
-
-    $scope.isUpperCaseLetter = function() {
-      var key = event.keyCode;
-      return ((key >= 65 && key <= 90) || key == 8);
-    }
   }
 ]);
-
