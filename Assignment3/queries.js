@@ -12,7 +12,6 @@ var findLibraryWest = function() {
    */
   return Listing.findOne({ code: "LBW"}).then(function(data) {
     console.log(data);
-    return Promise.resolve();
   });
 };
 var removeCable = function() {
@@ -23,7 +22,6 @@ var removeCable = function() {
    */
   return Listing.findOneAndRemove({ code: "CABL" }).then(function(data) {
     console.log(data);
-    return Promise.resolve();
   });
 };
 var updatePhelpsLab = function() {
@@ -33,7 +31,6 @@ var updatePhelpsLab = function() {
    */
   return Listing.findOneAndUpdate({ code: "PHL" }, { $set: { address: "Phelps Lab, Gainesville, FL 32603" } }, { new: true }, function(err, data) {
     console.log(data);
-    return Promise.resolve();
   });
 };
 var retrieveAllListings = function() {
@@ -42,7 +39,6 @@ var retrieveAllListings = function() {
    */
   return Listing.find({}).then(function(data) {
     console.log(data);
-    return Promise.resolve();
   });
 };
 
