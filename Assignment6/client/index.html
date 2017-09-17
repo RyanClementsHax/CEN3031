@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="/">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body ng-app="directoryApp">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1>UF Directory App</h1>
+        </div>
+        <div class="col-md-6">
+          <!-- Add a ui-sref property to the anchor tags to allow navigation between different states -->
+          <nav>
+            <ul class="nav nav-pills">
+              <li><a ui-sref="listings.list">List View</a></li>
+              <li><a ui-sref="listings.map">Map View</a></li>
+              <li><a ui-sref="listings.create">Create New Listing</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div ui-view></div>
+    </div>
+    <!-- Dependencies -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-simple-logger/0.1.7/angular-simple-logger.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-google-maps/2.4.1/angular-google-maps.min.js"></script>
+    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAJ9TTVfc5Nz2EpKJwxVtQUzQlMny_DzI4&sensor=false'></script>
+    <!-- Application Source Code -->
+    <script src="app/app.js"></script>
+    <script src="app/config/listings.client.routes.js"></script>
+    <script src="app/factories/listings.client.factory.js"></script>
+    <script src="app/controllers/listings.client.controller.js"></script>
+  </body>
+</html>
